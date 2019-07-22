@@ -35,6 +35,13 @@ def main():
     KEY3  = 3
     KEY2  = 2
 
+    # UART
+    KEY14  = 14
+    KEY15  = 15
+
+    # No.4 not available
+    # KEY4  = 4
+
     # Sound settings
     pygame.init()
     pygame.mixer.init(frequency = 22050, size = 16, channels = 1, buffer = 1024)
@@ -134,6 +141,15 @@ def main():
     def play2(key):
         w2.play()
 
+    def play14(key):
+        print("Key 14")
+
+    def play15(key):
+        print("Key 15")
+
+    # def play4(key):
+    #     print("Key 4")
+
     # GPIO settings (BCM mode)
     GPIO.setmode(GPIO.BCM)
 
@@ -161,6 +177,10 @@ def main():
     GPIO.setup(KEY3,  GPIO.IN, pull_up_down=GPIO.PUD_UP) # Physical pull up
     GPIO.setup(KEY2,  GPIO.IN, pull_up_down=GPIO.PUD_UP) # Physical pull up
 
+    #GPIO.setup(KEY4,  GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(KEY14, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(KEY15, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
     # HW interrupt settings
     GPIO.add_event_detect(KEY21, GPIO.RISING, callback=play21,  bouncetime=300)
     GPIO.add_event_detect(KEY26, GPIO.RISING, callback=play26,  bouncetime=300)
@@ -186,9 +206,15 @@ def main():
     GPIO.add_event_detect(KEY3,  GPIO.FALLING, callback=play3,  bouncetime=300) # Physical pull up
     GPIO.add_event_detect(KEY2,  GPIO.FALLING, callback=play2,  bouncetime=300) # Physical pull up
 
+    #GPIO.add_event_detect(KEY4,  GPIO.RISING, callback=play4,   bouncetime=300)
+    GPIO.add_event_detect(KEY14, GPIO.RISING, callback=play14,  bouncetime=300)
+    GPIO.add_event_detect(KEY15, GPIO.RISING, callback=play15,  bouncetime=300)
+
+    print("Starting main loop...")
+
     while True:
         try:
-            sleep(1.0)
+            sleep(0.1)
         except KeyboardInterrupt:
             pygame.mixer.quit()
             pygame.quit()
