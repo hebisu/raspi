@@ -3,6 +3,14 @@ from time import sleep
 import wiringpi, os, platform, psutil, pygame
 from pygame.locals import *
 
+#Instrument settings
+inst_select = 0
+INST_PIANO  = 0
+INST_HARP   = 1
+INST_JAZOR  = 2
+INST_ELEPI  = 3
+INST_ELEBA  = 4
+
 def main():
     p = psutil.Process()
     print('PID: %s, Priority: %s' % (p.pid, p.nice()))
@@ -142,10 +150,18 @@ def main():
         w2.play()
 
     def play14(key):
-        print("Key 14")
-
+        global inst_select
+        inst_select += 1
+        if inst_select > 4:
+            inst_select = 0
+        print("Instrument No." + str(inst_select))
+        
     def play15(key):
-        print("Key 15")
+        global inst_select
+        inst_select -= 1
+        if inst_select < 0:
+            inst_select = 4
+        print("Instrument No." + str(inst_select))
 
     # def play4(key):
     #     print("Key 4")
@@ -210,7 +226,7 @@ def main():
     GPIO.add_event_detect(KEY14, GPIO.RISING, callback=play14,  bouncetime=300)
     GPIO.add_event_detect(KEY15, GPIO.RISING, callback=play15,  bouncetime=300)
 
-    print("Starting main loop...")
+    print("Starting main loop. Press ctrl+c to quit.")
 
     while True:
         try:
