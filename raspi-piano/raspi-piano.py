@@ -182,14 +182,14 @@ def main():
     # Instrumental
     inst_en_0 = pygame.mixer.Sound("sound/inst_en_grandpiano.wav")
     inst_en_1 = pygame.mixer.Sound("sound/inst_en_harp.wav")
-    inst_en_2 = pygame.mixer.Sound("sound/inst_en_jazzgrandpiano.wav")
-    inst_en_3 = pygame.mixer.Sound("sound/inst_en_jazzorgan.wav")
-    inst_en_4 = pygame.mixer.Sound("sound/inst_en_stageelectricpiano.wav")
+    inst_en_2 = pygame.mixer.Sound("sound/inst_en_jazzorgan.wav")
+    inst_en_3 = pygame.mixer.Sound("sound/inst_en_stageelectricpiano.wav")
+    inst_en_4 = pygame.mixer.Sound("sound/inst_en_electricbase.wav")
     inst_jp_0 = pygame.mixer.Sound("sound/inst_jp_grandpiano.wav")
     inst_jp_1 = pygame.mixer.Sound("sound/inst_jp_harp.wav")
-    inst_jp_2 = pygame.mixer.Sound("sound/inst_jp_jazzgrandpiano.wav")
-    inst_jp_3 = pygame.mixer.Sound("sound/inst_jp_jazzorgan.wav")
-    inst_jp_4 = pygame.mixer.Sound("sound/inst_jp_stageelectricpiano.wav")
+    inst_jp_2 = pygame.mixer.Sound("sound/inst_jp_jazzorgan.wav")
+    inst_jp_3 = pygame.mixer.Sound("sound/inst_jp_stageelectricpiano.wav")
+    inst_jp_4 = pygame.mixer.Sound("sound/inst_jp_electricbase.wav")
 
     print("Sound file set up(pygame)")
 
@@ -525,14 +525,19 @@ def main():
 
         if inst_select == 0:
             inst_en_0.play()
+            print("Grand Piano")
         elif inst_select == 1:
             inst_en_1.play()
+            print("Harp")
         elif inst_select == 2:
             inst_en_2.play()
+            print("Jazz Organ")
         elif inst_select == 3:
             inst_en_3.play()
+            print("Stage Electric Piano")
         elif inst_select == 4:
             inst_en_4.play()
+            print("Electric Base")
         else:
             print("Error invalid instrument number")
         
@@ -545,14 +550,19 @@ def main():
 
         if inst_select == 0:
             inst_jp_0.play()
+            print("Grand Piano")
         elif inst_select == 1:
             inst_jp_1.play()
+            print("Harp")
         elif inst_select == 2:
             inst_jp_2.play()
+            print("Jazz Organ")
         elif inst_select == 3:
             inst_jp_3.play()
+            print("Stage Electric Piano")
         elif inst_select == 4:
             inst_jp_4.play()
+            print("Electric Base")
         else:
             print("Error invalid instrument number")
 
