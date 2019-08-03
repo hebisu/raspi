@@ -1,7 +1,8 @@
 import RPi.GPIO as GPIO
 from time import sleep
-import wiringpi, os, platform, psutil, pygame
+import wiringpi, os, platform, psutil, pygame, random
 from pygame.locals import *
+import julius_cli
 
 #Instrument settings
 inst_select = 0
@@ -521,8 +522,9 @@ def main():
         inst_select += 1
         if inst_select > 4:
             inst_select = 0
-        print("Instrument No." + str(inst_select))
+        # print("Instrument No." + str(inst_select))
 
+        # Call selected instrument
         if inst_select == 0:
             inst_en_0.play()
             print("Grand Piano")
@@ -546,8 +548,9 @@ def main():
         inst_select -= 1
         if inst_select < 0:
             inst_select = 4
-        print("Instrument No." + str(inst_select))
+        # print("Instrument No." + str(inst_select))
 
+        # Call selected instrument
         if inst_select == 0:
             inst_jp_0.play()
             print("Grand Piano")
@@ -565,6 +568,49 @@ def main():
             print("Electric Base")
         else:
             print("Error invalid instrument number")
+
+    def voice_command_cb(words):
+        global inst_select
+        # Select and call selected instrument
+        cmd = "".join(words)
+        if cmd == "グランドピアノ":
+            inst_select = 0
+            if random.randint(0, 100) < 50:
+                inst_jp_0.play()
+            else:
+                inst_en_0.play()
+            print("Grand Piano")
+        elif cmd == "ハープ":
+            inst_select = 1
+            if random.randint(0, 100) < 50:
+                inst_jp_1.play()
+            else:
+                inst_en_1.play()
+            print("Harp")
+        elif cmd == "ジャズオルガン":
+            inst_select = 2
+            if random.randint(0, 100) < 50:
+                inst_jp_2.play()
+            else:
+                inst_en_2.play()
+            print("Jazz Organ")
+        elif cmd == "ステージエレクトリックピアノ":
+            inst_select = 3
+            if random.randint(0, 100) < 50:
+                inst_jp_3.play()
+            else:
+                inst_en_3.play()
+            print("Stage Electric Piano")
+        elif cmd == "エレクトリックベース":
+            inst_select = 4
+            if random.randint(0, 100) < 50:
+                inst_jp_4.play()
+            else:
+                inst_en_4.play()
+            print("Electric Base")            
+        else:
+            print("Unknown command: ", cmd)
+        return True
 
     # def play4(key):
     #     print("Key 4")
@@ -631,16 +677,16 @@ def main():
 
     print("Starting main loop. Press ctrl+c to quit.")
 
-    while True:
-        try:
-            sleep(0.5)
-        except KeyboardInterrupt:
-            pygame.mixer.quit()
-            pygame.quit()
-            del p
-            break
+    # Connect Julius
+    julius_cli.julius_connect()
+    julius_cli.julius_recv(voice_command_cb)
 
+    pygame.mixer.quit()
+    pygame.quit()
+    print("pygame quit.")
+    del p
     GPIO.cleanup()
+    print("GPIO cleanup.")
 
 if __name__ == "__main__":
     main()
