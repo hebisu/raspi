@@ -1,9 +1,16 @@
 % INSTRUMENT
 グランドピアノ	g u r a N d o p i a n o
+ピアノ		p i a n o
 ハープ		h a: p u
 ジャズオルガン	j a z u o r u g a N
+オルガン	o r u g a N
 ステージエレクトリックピアノ	s u t e: j i e r e k u t o r i q k u p i a n o
+ステージエレピ	s u t e: j i e r e p i
+エレピ		e r e p i
+エレクトリックピアノ	e r e k u t o r i q k u p i a n o
 エレクトリックベース	e r e k u t o r i q k u b e: s u
+エレベ	e r e b e
+ベース	b e: s u
 
 % NS_B
 [s]         silB

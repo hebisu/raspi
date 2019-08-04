@@ -573,7 +573,7 @@ def main():
         global inst_select
         # Select and call selected instrument
         cmd = "".join(words)
-        if cmd == "グランドピアノ":
+        if (cmd == "グランドピアノ" or cmd == "ピアノ"):
             inst_select = 0
             if random.randint(0, 100) < 50:
                 inst_jp_0.play()
@@ -587,21 +587,21 @@ def main():
             else:
                 inst_en_1.play()
             print("Harp")
-        elif cmd == "ジャズオルガン":
+        elif (cmd == "ジャズオルガン" or cmd == "オルガン"):
             inst_select = 2
             if random.randint(0, 100) < 50:
                 inst_jp_2.play()
             else:
                 inst_en_2.play()
             print("Jazz Organ")
-        elif cmd == "ステージエレクトリックピアノ":
+        elif (cmd == "ステージエレクトリックピアノ" or cmd == "エレクトリックピアノ" or cmd == "ステージエレピ" or cmd == "エレピ"):
             inst_select = 3
             if random.randint(0, 100) < 50:
                 inst_jp_3.play()
             else:
                 inst_en_3.play()
             print("Stage Electric Piano")
-        elif cmd == "エレクトリックベース":
+        elif (cmd == "エレクトリックベース" or cmd == "エレベ" or cmd == "ベース"):
             inst_select = 4
             if random.randint(0, 100) < 50:
                 inst_jp_4.play()
