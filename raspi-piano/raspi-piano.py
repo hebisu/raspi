@@ -1,55 +1,61 @@
-import RPi.GPIO as GPIO
+import random
 from time import sleep
-import wiringpi, os, platform, psutil, pygame, random
+
+import psutil
+import pygame
 from pygame.locals import *
+import RPi.GPIO as GPIO
+
 import julius_cli
 
 #Instrument settings
 inst_select = 0
-INST_PIANO  = 0
-INST_HARP   = 1
-INST_JAZOR  = 2
-INST_ELEPI  = 3
-INST_ELEBA  = 4
+INST_PIANO  = 0 # Grand piano
+INST_HARP   = 1 # Harp
+INST_JAZOR  = 2 # Jazz organ
+INST_ELEPI  = 3 # Stage electric piano
+INST_ELEBA  = 4 # Electric base
+
+# GPIO port settings
+# key (BCM number)
+KEY21 = 21
+KEY26 = 26
+KEY20 = 20
+KEY19 = 19
+KEY16 = 16
+KEY13 = 13
+KEY12 = 12
+KEY6  = 6
+KEY5  = 5
+KEY7  = 7
+KEY11 = 11
+KEY8  = 8
+KEY9  = 9
+KEY25 = 25
+KEY10 = 10
+KEY24 = 24
+KEY22 = 22
+KEY23 = 23
+KEY27 = 27
+KEY18 = 18
+KEY17 = 17
+KEY3  = 3
+KEY2  = 2
+
+# UART
+KEY14  = 14
+KEY15  = 15
+
+# No.4 not available
+# KEY4  = 4
 
 def main():
-    p = psutil.Process()
-    print('PID: %s, Priority: %s' % (p.pid, p.nice()))
-    p.nice(-20) # Highest priority
-    print('PID: %s, Priority: %s' % (p.pid, p.nice()))
 
-    # GPIO port settings
-    # key (BCM number)
-    KEY21 = 21
-    KEY26 = 26
-    KEY20 = 20
-    KEY19 = 19
-    KEY16 = 16
-    KEY13 = 13
-    KEY12 = 12
-    KEY6  = 6
-    KEY5  = 5
-    KEY7  = 7
-    KEY11 = 11
-    KEY8  = 8
-    KEY9  = 9
-    KEY25 = 25
-    KEY10 = 10
-    KEY24 = 24
-    KEY22 = 22
-    KEY23 = 23
-    KEY27 = 27
-    KEY18 = 18
-    KEY17 = 17
-    KEY3  = 3
-    KEY2  = 2
-
-    # UART
-    KEY14  = 14
-    KEY15  = 15
-
-    # No.4 not available
-    # KEY4  = 4
+    # Process priority setting
+    process_priority = psutil.Process()
+    print('PID: %s, Priority: %s' % (process_priority.pid, process_priority.nice()))
+    process_priority.nice(-20) # Highest priority
+    print('PID: %s, Priority: %s' % (process_priority.pid, process_priority.nice()))
 
     # Sound settings
     pygame.init()
@@ -196,323 +202,323 @@ def main():
 
     # Callback functions
     def play21(key):
-        if inst_select == 0:
+        if inst_select == INST_PIANO:
             piano21.play()
-        elif inst_select == 1:
+        elif inst_select == INST_HARP:
             harp21.play()
-        elif inst_select == 2:
+        elif inst_select == INST_JAZOR:
             jazor21.play()
-        elif inst_select == 3:
+        elif inst_select == INST_ELEPI:
             elepi21.play()
-        elif inst_select == 4:
+        elif inst_select == INST_ELEBA:
             eleba21.play()
         else:
             print("Error invalid instrument number")
 
     def play26(key):
-        if inst_select == 0:
+        if inst_select == INST_PIANO:
             piano26.play()
-        elif inst_select == 1:
+        elif inst_select == INST_HARP:
             harp26.play()
-        elif inst_select == 2:
+        elif inst_select == INST_JAZOR:
             jazor26.play()
-        elif inst_select == 3:
+        elif inst_select == INST_ELEPI:
             elepi26.play()
-        elif inst_select == 4:
+        elif inst_select == INST_ELEBA:
             eleba26.play()
         else:
             print("Error invalid instrument number")
 
     def play20(key):
-        if inst_select == 0:
+        if inst_select == INST_PIANO:
             piano20.play()
-        elif inst_select == 1:
+        elif inst_select == INST_HARP:
             harp20.play()
-        elif inst_select == 2:
+        elif inst_select == INST_JAZOR:
             jazor20.play()
-        elif inst_select == 3:
+        elif inst_select == INST_ELEPI:
             elepi20.play()
-        elif inst_select == 4:
+        elif inst_select == INST_ELEBA:
             eleba20.play()
         else:
             print("Error invalid instrument number")
 
     def play19(key):
-        if inst_select == 0:
+        if inst_select == INST_PIANO:
             piano19.play()
-        elif inst_select == 1:
+        elif inst_select == INST_HARP:
             harp19.play()
-        elif inst_select == 2:
+        elif inst_select == INST_JAZOR:
             jazor19.play()
-        elif inst_select == 3:
+        elif inst_select == INST_ELEPI:
             elepi19.play()
-        elif inst_select == 4:
+        elif inst_select == INST_ELEBA:
             eleba19.play()
         else:
             print("Error invalid instrument number")
 
     def play16(key):
-        if inst_select == 0:
+        if inst_select == INST_PIANO:
             piano16.play()
-        elif inst_select == 1:
+        elif inst_select == INST_HARP:
             harp16.play()
-        elif inst_select == 2:
+        elif inst_select == INST_JAZOR:
             jazor16.play()
-        elif inst_select == 3:
+        elif inst_select == INST_ELEPI:
             elepi16.play()
-        elif inst_select == 4:
+        elif inst_select == INST_ELEBA:
             eleba16.play()
         else:
             print("Error invalid instrument number")
 
     def play13(key):
-        if inst_select == 0:
+        if inst_select == INST_PIANO:
             piano13.play()
-        elif inst_select == 1:
+        elif inst_select == INST_HARP:
             harp13.play()
-        elif inst_select == 2:
+        elif inst_select == INST_JAZOR:
             jazor13.play()
-        elif inst_select == 3:
+        elif inst_select == INST_ELEPI:
             elepi13.play()
-        elif inst_select == 4:
+        elif inst_select == INST_ELEBA:
             eleba13.play()
         else:
             print("Error invalid instrument number")
 
     def play12(key):
-        if inst_select == 0:
+        if inst_select == INST_PIANO:
             piano12.play()
-        elif inst_select == 1:
+        elif inst_select == INST_HARP:
             harp12.play()
-        elif inst_select == 2:
+        elif inst_select == INST_JAZOR:
             jazor12.play()
-        elif inst_select == 3:
+        elif inst_select == INST_ELEPI:
             elepi12.play()
-        elif inst_select == 4:
+        elif inst_select == INST_ELEBA:
             eleba12.play()
         else:
             print("Error invalid instrument number")
 
     def play6(key):
-        if inst_select == 0:
+        if inst_select == INST_PIANO:
             piano6.play()
-        elif inst_select == 1:
+        elif inst_select == INST_HARP:
             harp6.play()
-        elif inst_select == 2:
+        elif inst_select == INST_JAZOR:
             jazor6.play()
-        elif inst_select == 3:
+        elif inst_select == INST_ELEPI:
             elepi6.play()
-        elif inst_select == 4:
+        elif inst_select == INST_ELEBA:
             eleba6.play()
         else:
             print("Error invalid instrument number")
 
     def play5(key):
-        if inst_select == 0:
+        if inst_select == INST_PIANO:
             piano5.play()
-        elif inst_select == 1:
+        elif inst_select == INST_HARP:
             harp5.play()
-        elif inst_select == 2:
+        elif inst_select == INST_JAZOR:
             jazor5.play()
-        elif inst_select == 3:
+        elif inst_select == INST_ELEPI:
             elepi5.play()
-        elif inst_select == 4:
+        elif inst_select == INST_ELEBA:
             eleba5.play()
         else:
             print("Error invalid instrument number")
 
     def play7(key):
-        if inst_select == 0:
+        if inst_select == INST_PIANO:
             piano7.play()
-        elif inst_select == 1:
+        elif inst_select == INST_HARP:
             harp7.play()
-        elif inst_select == 2:
+        elif inst_select == INST_JAZOR:
             jazor7.play()
-        elif inst_select == 3:
+        elif inst_select == INST_ELEPI:
             elepi7.play()
-        elif inst_select == 4:
+        elif inst_select == INST_ELEBA:
             eleba7.play()
         else:
             print("Error invalid instrument number")
 
     def play11(key):
-        if inst_select == 0:
+        if inst_select == INST_PIANO:
             piano11.play()
-        elif inst_select == 1:
+        elif inst_select == INST_HARP:
             harp11.play()
-        elif inst_select == 2:
+        elif inst_select == INST_JAZOR:
             jazor11.play()
-        elif inst_select == 3:
+        elif inst_select == INST_ELEPI:
             elepi11.play()
-        elif inst_select == 4:
+        elif inst_select == INST_ELEBA:
             eleba11.play()
         else:
             print("Error invalid instrument number")
 
     def play8(key):
-        if inst_select == 0:
+        if inst_select == INST_PIANO:
             piano8.play()
-        elif inst_select == 1:
+        elif inst_select == INST_HARP:
             harp8.play()
-        elif inst_select == 2:
+        elif inst_select == INST_JAZOR:
             jazor8.play()
-        elif inst_select == 3:
+        elif inst_select == INST_ELEPI:
             elepi8.play()
-        elif inst_select == 4:
+        elif inst_select == INST_ELEBA:
             eleba8.play()
         else:
             print("Error invalid instrument number")
 
     def play9(key):
-        if inst_select == 0:
+        if inst_select == INST_PIANO:
             piano9.play()
-        elif inst_select == 1:
+        elif inst_select == INST_HARP:
             harp9.play()
-        elif inst_select == 2:
+        elif inst_select == INST_JAZOR:
             jazor9.play()
-        elif inst_select == 3:
+        elif inst_select == INST_ELEPI:
             elepi9.play()
-        elif inst_select == 4:
+        elif inst_select == INST_ELEBA:
             eleba9.play()
         else:
             print("Error invalid instrument number")
 
     def play25(key):
-        if inst_select == 0:
+        if inst_select == INST_PIANO:
             piano25.play()
-        elif inst_select == 1:
+        elif inst_select == INST_HARP:
             harp25.play()
-        elif inst_select == 2:
+        elif inst_select == INST_JAZOR:
             jazor25.play()
-        elif inst_select == 3:
+        elif inst_select == INST_ELEPI:
             elepi25.play()
-        elif inst_select == 4:
+        elif inst_select == INST_ELEBA:
             eleba25.play()
         else:
             print("Error invalid instrument number")
 
     def play10(key):
-        if inst_select == 0:
+        if inst_select == INST_PIANO:
             piano10.play()
-        elif inst_select == 1:
+        elif inst_select == INST_HARP:
             harp10.play()
-        elif inst_select == 2:
+        elif inst_select == INST_JAZOR:
             jazor10.play()
-        elif inst_select == 3:
+        elif inst_select == INST_ELEPI:
             elepi10.play()
-        elif inst_select == 4:
+        elif inst_select == INST_ELEBA:
             eleba10.play()
         else:
             print("Error invalid instrument number")
 
     def play24(key):
-        if inst_select == 0:
+        if inst_select == INST_PIANO:
             piano24.play()
-        elif inst_select == 1:
+        elif inst_select == INST_HARP:
             harp24.play()
-        elif inst_select == 2:
+        elif inst_select == INST_JAZOR:
             jazor24.play()
-        elif inst_select == 3:
+        elif inst_select == INST_ELEPI:
             elepi24.play()
-        elif inst_select == 4:
+        elif inst_select == INST_ELEBA:
             eleba24.play()
         else:
             print("Error invalid instrument number")
 
     def play22(key):
-        if inst_select == 0:
+        if inst_select == INST_PIANO:
             piano22.play()
-        elif inst_select == 1:
+        elif inst_select == INST_HARP:
             harp22.play()
-        elif inst_select == 2:
+        elif inst_select == INST_JAZOR:
             jazor22.play()
-        elif inst_select == 3:
+        elif inst_select == INST_ELEPI:
             elepi22.play()
-        elif inst_select == 4:
+        elif inst_select == INST_ELEBA:
             eleba22.play()
         else:
             print("Error invalid instrument number")
 
     def play23(key):
-        if inst_select == 0:
+        if inst_select == INST_PIANO:
             piano23.play()
-        elif inst_select == 1:
+        elif inst_select == INST_HARP:
             harp23.play()
-        elif inst_select == 2:
+        elif inst_select == INST_JAZOR:
             jazor23.play()
-        elif inst_select == 3:
+        elif inst_select == INST_ELEPI:
             elepi23.play()
-        elif inst_select == 4:
+        elif inst_select == INST_ELEBA:
             eleba23.play()
         else:
             print("Error invalid instrument number")
 
     def play27(key):
-        if inst_select == 0:
+        if inst_select == INST_PIANO:
             piano27.play()
-        elif inst_select == 1:
+        elif inst_select == INST_HARP:
             harp27.play()
-        elif inst_select == 2:
+        elif inst_select == INST_JAZOR:
             jazor27.play()
-        elif inst_select == 3:
+        elif inst_select == INST_ELEPI:
             elepi27.play()
-        elif inst_select == 4:
+        elif inst_select == INST_ELEBA:
             eleba27.play()
         else:
             print("Error invalid instrument number")
 
     def play18(key):
-        if inst_select == 0:
+        if inst_select == INST_PIANO:
             piano18.play()
-        elif inst_select == 1:
+        elif inst_select == INST_HARP:
             harp18.play()
-        elif inst_select == 2:
+        elif inst_select == INST_JAZOR:
             jazor18.play()
-        elif inst_select == 3:
+        elif inst_select == INST_ELEPI:
             elepi18.play()
-        elif inst_select == 4:
+        elif inst_select == INST_ELEBA:
             eleba18.play()
         else:
             print("Error invalid instrument number")
 
     def play17(key):
-        if inst_select == 0:
+        if inst_select == INST_PIANO:
             piano17.play()
-        elif inst_select == 1:
+        elif inst_select == INST_HARP:
             harp17.play()
-        elif inst_select == 2:
+        elif inst_select == INST_JAZOR:
             jazor17.play()
-        elif inst_select == 3:
+        elif inst_select == INST_ELEPI:
             elepi17.play()
-        elif inst_select == 4:
+        elif inst_select == INST_ELEBA:
             eleba17.play()
         else:
             print("Error invalid instrument number")
 
     def play3(key):
-        if inst_select == 0:
+        if inst_select == INST_PIANO:
             piano3.play()
-        elif inst_select == 1:
+        elif inst_select == INST_HARP:
             harp3.play()
-        elif inst_select == 2:
+        elif inst_select == INST_JAZOR:
             jazor3.play()
-        elif inst_select == 3:
+        elif inst_select == INST_ELEPI:
             elepi3.play()
-        elif inst_select == 4:
+        elif inst_select == INST_ELEBA:
             eleba3.play()
         else:
             print("Error invalid instrument number")
 
     def play2(key):
-        if inst_select == 0:
+        if inst_select == INST_PIANO:
             piano2.play()
-        elif inst_select == 1:
+        elif inst_select == INST_HARP:
             harp2.play()
-        elif inst_select == 2:
+        elif inst_select == INST_JAZOR:
             jazor2.play()
-        elif inst_select == 3:
+        elif inst_select == INST_ELEPI:
             elepi2.play()
-        elif inst_select == 4:
+        elif inst_select == INST_ELEBA:
             eleba2.play()
         else:
             print("Error invalid instrument number")
@@ -520,24 +526,24 @@ def main():
     def play14(key):
         global inst_select
         inst_select += 1
-        if inst_select > 4:
-            inst_select = 0
+        if inst_select > INST_ELEBA:
+            inst_select = INST_PIANO
         # print("Instrument No." + str(inst_select))
 
         # Call selected instrument
-        if inst_select == 0:
+        if inst_select == INST_PIANO:
             inst_en_0.play()
             print("Grand Piano")
-        elif inst_select == 1:
+        elif inst_select == INST_HARP:
             inst_en_1.play()
             print("Harp")
-        elif inst_select == 2:
+        elif inst_select == INST_JAZOR:
             inst_en_2.play()
             print("Jazz Organ")
-        elif inst_select == 3:
+        elif inst_select == INST_ELEPI:
             inst_en_3.play()
             print("Stage Electric Piano")
-        elif inst_select == 4:
+        elif inst_select == INST_ELEBA:
             inst_en_4.play()
             print("Electric Base")
         else:
@@ -546,24 +552,24 @@ def main():
     def play15(key):
         global inst_select
         inst_select -= 1
-        if inst_select < 0:
-            inst_select = 4
+        if inst_select < INST_PIANO:
+            inst_select = INST_ELEBA
         # print("Instrument No." + str(inst_select))
 
         # Call selected instrument
-        if inst_select == 0:
+        if inst_select == INST_PIANO:
             inst_jp_0.play()
             print("Grand Piano")
-        elif inst_select == 1:
+        elif inst_select == INST_HARP:
             inst_jp_1.play()
             print("Harp")
-        elif inst_select == 2:
+        elif inst_select == INST_JAZOR:
             inst_jp_2.play()
             print("Jazz Organ")
-        elif inst_select == 3:
+        elif inst_select == INST_ELEPI:
             inst_jp_3.play()
             print("Stage Electric Piano")
-        elif inst_select == 4:
+        elif inst_select == INST_ELEBA:
             inst_jp_4.play()
             print("Electric Base")
         else:
@@ -646,7 +652,7 @@ def main():
     GPIO.setup(KEY14, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(KEY15, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
-    # HW interrupt settings
+    # HW interrupt settings (bouncetime is to prevent contact bounce)
     GPIO.add_event_detect(KEY21, GPIO.RISING, callback=play21,  bouncetime=300)
     GPIO.add_event_detect(KEY26, GPIO.RISING, callback=play26,  bouncetime=300)
     GPIO.add_event_detect(KEY20, GPIO.RISING, callback=play20,  bouncetime=300)
@@ -677,14 +683,15 @@ def main():
 
     print("Starting main loop. Press ctrl+c to quit.")
 
-    # Connect Julius
+    # Connect Julius (voice recognition engine)
     julius_cli.julius_connect()
     julius_cli.julius_recv(voice_command_cb)
 
+    # Free objects
     pygame.mixer.quit()
     pygame.quit()
     print("pygame quit.")
-    del p
+    del process_priority
     GPIO.cleanup()
     print("GPIO cleanup.")
 
