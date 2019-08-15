@@ -9,13 +9,13 @@ import RPi.GPIO as GPIO
 
 import julius_cli
 
-#Instrument settings
+# Instrument settings
 inst_select = 0
-INST_PIANO  = 0 # Grand piano
-INST_HARP   = 1 # Harp
-INST_JAZOR  = 2 # Jazz organ
-INST_ELEPI  = 3 # Stage electric piano
-INST_ELEBA  = 4 # Electric base
+INST_PIANO = 0  # Grand piano
+INST_HARP = 1  # Harp
+INST_JAZOR = 2  # Jazz organ
+INST_ELEPI = 3  # Stage electric piano
+INST_ELEBA = 4  # Electric base
 
 # GPIO port settings
 # key (BCM number)
@@ -26,12 +26,12 @@ KEY19 = 19
 KEY16 = 16
 KEY13 = 13
 KEY12 = 12
-KEY6  = 6
-KEY5  = 5
-KEY7  = 7
+KEY6 = 6
+KEY5 = 5
+KEY7 = 7
 KEY11 = 11
-KEY8  = 8
-KEY9  = 9
+KEY8 = 8
+KEY9 = 9
 KEY25 = 25
 KEY10 = 10
 KEY24 = 24
@@ -40,26 +40,32 @@ KEY23 = 23
 KEY27 = 27
 KEY18 = 18
 KEY17 = 17
-KEY3  = 3
-KEY2  = 2
+KEY3 = 3
+KEY2 = 2
 
 # UART
-KEY14  = 14
-KEY15  = 15
+KEY14 = 14
+KEY15 = 15
 
 # No.4 not available
 # KEY4  = 4
 
+
 def main():
     # Process priority setting
     process_priority = psutil.Process()
-    print('PID: %s, Priority: %s' % (process_priority.pid, process_priority.nice()))
-    process_priority.nice(-20) # Highest priority
-    print('PID: %s, Priority: %s' % (process_priority.pid, process_priority.nice()))
+    print('PID: %s, Priority: %s' % (process_priority.pid,
+          process_priority.nice()))
+
+    # Highest priority
+    process_priority.nice(-20)
+
+    print('PID: %s, Priority: %s' % (process_priority.pid,
+          process_priority.nice()))
 
     # Sound settings
     pygame.init()
-    pygame.mixer.init(frequency = 22050, size = 16, channels = 1, buffer = 1024)
+    pygame.mixer.init(frequency=22050, size=16, channels=1, buffer=1024)
 
     # Grand Piano
     piano21 = pygame.mixer.Sound("sound/piano21.wav")
@@ -69,12 +75,12 @@ def main():
     piano16 = pygame.mixer.Sound("sound/piano16.wav")
     piano13 = pygame.mixer.Sound("sound/piano13.wav")
     piano12 = pygame.mixer.Sound("sound/piano12.wav")
-    piano6  = pygame.mixer.Sound("sound/piano6.wav")
-    piano5  = pygame.mixer.Sound("sound/piano5.wav")
-    piano7  = pygame.mixer.Sound("sound/piano7.wav")
+    piano6 = pygame.mixer.Sound("sound/piano6.wav")
+    piano5 = pygame.mixer.Sound("sound/piano5.wav")
+    piano7 = pygame.mixer.Sound("sound/piano7.wav")
     piano11 = pygame.mixer.Sound("sound/piano11.wav")
-    piano8  = pygame.mixer.Sound("sound/piano8.wav")
-    piano9  = pygame.mixer.Sound("sound/piano9.wav")
+    piano8 = pygame.mixer.Sound("sound/piano8.wav")
+    piano9 = pygame.mixer.Sound("sound/piano9.wav")
     piano25 = pygame.mixer.Sound("sound/piano25.wav")
     piano10 = pygame.mixer.Sound("sound/piano10.wav")
     piano24 = pygame.mixer.Sound("sound/piano24.wav")
@@ -83,8 +89,8 @@ def main():
     piano27 = pygame.mixer.Sound("sound/piano27.wav")
     piano18 = pygame.mixer.Sound("sound/piano18.wav")
     piano17 = pygame.mixer.Sound("sound/piano17.wav")
-    piano3  = pygame.mixer.Sound("sound/piano3.wav")
-    piano2  = pygame.mixer.Sound("sound/piano2.wav")
+    piano3 = pygame.mixer.Sound("sound/piano3.wav")
+    piano2 = pygame.mixer.Sound("sound/piano2.wav")
 
     # Harp
     harp21 = pygame.mixer.Sound("sound/harp21.wav")
@@ -94,12 +100,12 @@ def main():
     harp16 = pygame.mixer.Sound("sound/harp16.wav")
     harp13 = pygame.mixer.Sound("sound/harp13.wav")
     harp12 = pygame.mixer.Sound("sound/harp12.wav")
-    harp6  = pygame.mixer.Sound("sound/harp6.wav")
-    harp5  = pygame.mixer.Sound("sound/harp5.wav")
-    harp7  = pygame.mixer.Sound("sound/harp7.wav")
+    harp6 = pygame.mixer.Sound("sound/harp6.wav")
+    harp5 = pygame.mixer.Sound("sound/harp5.wav")
+    harp7 = pygame.mixer.Sound("sound/harp7.wav")
     harp11 = pygame.mixer.Sound("sound/harp11.wav")
-    harp8  = pygame.mixer.Sound("sound/harp8.wav")
-    harp9  = pygame.mixer.Sound("sound/harp9.wav")
+    harp8 = pygame.mixer.Sound("sound/harp8.wav")
+    harp9 = pygame.mixer.Sound("sound/harp9.wav")
     harp25 = pygame.mixer.Sound("sound/harp25.wav")
     harp10 = pygame.mixer.Sound("sound/harp10.wav")
     harp24 = pygame.mixer.Sound("sound/harp24.wav")
@@ -108,8 +114,8 @@ def main():
     harp27 = pygame.mixer.Sound("sound/harp27.wav")
     harp18 = pygame.mixer.Sound("sound/harp18.wav")
     harp17 = pygame.mixer.Sound("sound/harp17.wav")
-    harp3  = pygame.mixer.Sound("sound/harp3.wav")
-    harp2  = pygame.mixer.Sound("sound/harp2.wav")
+    harp3 = pygame.mixer.Sound("sound/harp3.wav")
+    harp2 = pygame.mixer.Sound("sound/harp2.wav")
 
     # Electric Base
     eleba21 = pygame.mixer.Sound("sound/eleba21.wav")
@@ -119,12 +125,12 @@ def main():
     eleba16 = pygame.mixer.Sound("sound/eleba16.wav")
     eleba13 = pygame.mixer.Sound("sound/eleba13.wav")
     eleba12 = pygame.mixer.Sound("sound/eleba12.wav")
-    eleba6  = pygame.mixer.Sound("sound/eleba6.wav")
-    eleba5  = pygame.mixer.Sound("sound/eleba5.wav")
-    eleba7  = pygame.mixer.Sound("sound/eleba7.wav")
+    eleba6 = pygame.mixer.Sound("sound/eleba6.wav")
+    eleba5 = pygame.mixer.Sound("sound/eleba5.wav")
+    eleba7 = pygame.mixer.Sound("sound/eleba7.wav")
     eleba11 = pygame.mixer.Sound("sound/eleba11.wav")
-    eleba8  = pygame.mixer.Sound("sound/eleba8.wav")
-    eleba9  = pygame.mixer.Sound("sound/eleba9.wav")
+    eleba8 = pygame.mixer.Sound("sound/eleba8.wav")
+    eleba9 = pygame.mixer.Sound("sound/eleba9.wav")
     eleba25 = pygame.mixer.Sound("sound/eleba25.wav")
     eleba10 = pygame.mixer.Sound("sound/eleba10.wav")
     eleba24 = pygame.mixer.Sound("sound/eleba24.wav")
@@ -133,8 +139,8 @@ def main():
     eleba27 = pygame.mixer.Sound("sound/eleba27.wav")
     eleba18 = pygame.mixer.Sound("sound/eleba18.wav")
     eleba17 = pygame.mixer.Sound("sound/eleba17.wav")
-    eleba3  = pygame.mixer.Sound("sound/eleba3.wav")
-    eleba2  = pygame.mixer.Sound("sound/eleba2.wav")
+    eleba3 = pygame.mixer.Sound("sound/eleba3.wav")
+    eleba2 = pygame.mixer.Sound("sound/eleba2.wav")
 
     # Electric Piano
     elepi21 = pygame.mixer.Sound("sound/elepi21.wav")
@@ -144,12 +150,12 @@ def main():
     elepi16 = pygame.mixer.Sound("sound/elepi16.wav")
     elepi13 = pygame.mixer.Sound("sound/elepi13.wav")
     elepi12 = pygame.mixer.Sound("sound/elepi12.wav")
-    elepi6  = pygame.mixer.Sound("sound/elepi6.wav")
-    elepi5  = pygame.mixer.Sound("sound/elepi5.wav")
-    elepi7  = pygame.mixer.Sound("sound/elepi7.wav")
+    elepi6 = pygame.mixer.Sound("sound/elepi6.wav")
+    elepi5 = pygame.mixer.Sound("sound/elepi5.wav")
+    elepi7 = pygame.mixer.Sound("sound/elepi7.wav")
     elepi11 = pygame.mixer.Sound("sound/elepi11.wav")
-    elepi8  = pygame.mixer.Sound("sound/elepi8.wav")
-    elepi9  = pygame.mixer.Sound("sound/elepi9.wav")
+    elepi8 = pygame.mixer.Sound("sound/elepi8.wav")
+    elepi9 = pygame.mixer.Sound("sound/elepi9.wav")
     elepi25 = pygame.mixer.Sound("sound/elepi25.wav")
     elepi10 = pygame.mixer.Sound("sound/elepi10.wav")
     elepi24 = pygame.mixer.Sound("sound/elepi24.wav")
@@ -158,8 +164,8 @@ def main():
     elepi27 = pygame.mixer.Sound("sound/elepi27.wav")
     elepi18 = pygame.mixer.Sound("sound/elepi18.wav")
     elepi17 = pygame.mixer.Sound("sound/elepi17.wav")
-    elepi3  = pygame.mixer.Sound("sound/elepi3.wav")
-    elepi2  = pygame.mixer.Sound("sound/elepi2.wav")
+    elepi3 = pygame.mixer.Sound("sound/elepi3.wav")
+    elepi2 = pygame.mixer.Sound("sound/elepi2.wav")
 
     # Jazz Organ
     jazor21 = pygame.mixer.Sound("sound/jazor21.wav")
@@ -169,12 +175,12 @@ def main():
     jazor16 = pygame.mixer.Sound("sound/jazor16.wav")
     jazor13 = pygame.mixer.Sound("sound/jazor13.wav")
     jazor12 = pygame.mixer.Sound("sound/jazor12.wav")
-    jazor6  = pygame.mixer.Sound("sound/jazor6.wav")
-    jazor5  = pygame.mixer.Sound("sound/jazor5.wav")
-    jazor7  = pygame.mixer.Sound("sound/jazor7.wav")
+    jazor6 = pygame.mixer.Sound("sound/jazor6.wav")
+    jazor5 = pygame.mixer.Sound("sound/jazor5.wav")
+    jazor7 = pygame.mixer.Sound("sound/jazor7.wav")
     jazor11 = pygame.mixer.Sound("sound/jazor11.wav")
-    jazor8  = pygame.mixer.Sound("sound/jazor8.wav")
-    jazor9  = pygame.mixer.Sound("sound/jazor9.wav")
+    jazor8 = pygame.mixer.Sound("sound/jazor8.wav")
+    jazor9 = pygame.mixer.Sound("sound/jazor9.wav")
     jazor25 = pygame.mixer.Sound("sound/jazor25.wav")
     jazor10 = pygame.mixer.Sound("sound/jazor10.wav")
     jazor24 = pygame.mixer.Sound("sound/jazor24.wav")
@@ -183,8 +189,8 @@ def main():
     jazor27 = pygame.mixer.Sound("sound/jazor27.wav")
     jazor18 = pygame.mixer.Sound("sound/jazor18.wav")
     jazor17 = pygame.mixer.Sound("sound/jazor17.wav")
-    jazor3  = pygame.mixer.Sound("sound/jazor3.wav")
-    jazor2  = pygame.mixer.Sound("sound/jazor2.wav")
+    jazor3 = pygame.mixer.Sound("sound/jazor3.wav")
+    jazor2 = pygame.mixer.Sound("sound/jazor2.wav")
 
     # Instrumental select voice play
     inst_en_0 = pygame.mixer.Sound("sound/inst_en_grandpiano.wav")
@@ -548,7 +554,7 @@ def main():
             print("Electric Base")
         else:
             print("Error invalid instrument number")
-        
+
     def play15(key):
         global inst_select
         inst_select -= 1
@@ -582,39 +588,45 @@ def main():
         cmd = "".join(words)
         if (cmd == "グランドピアノ" or cmd == "ピアノ"):
             inst_select = 0
-            if random.randint(0, 100) < 50: # Play English or Japanese voice by 50%
+            # Play English or Japanese voice by 50%
+            if random.randint(0, 100) < 50:
                 inst_jp_0.play()
             else:
                 inst_en_0.play()
             print("Grand Piano")
         elif cmd == "ハープ":
             inst_select = 1
-            if random.randint(0, 100) < 50: # Play English or Japanese voice by 50%
+            # Play English or Japanese voice by 50%
+            if random.randint(0, 100) < 50:
                 inst_jp_1.play()
             else:
                 inst_en_1.play()
             print("Harp")
         elif (cmd == "ジャズオルガン" or cmd == "オルガン"):
             inst_select = 2
-            if random.randint(0, 100) < 50: # Play English or Japanese voice by 50%
+            # Play English or Japanese voice by 50%
+            if random.randint(0, 100) < 50:
                 inst_jp_2.play()
             else:
                 inst_en_2.play()
             print("Jazz Organ")
-        elif (cmd == "ステージエレクトリックピアノ" or cmd == "エレクトリックピアノ" or cmd == "ステージエレピ" or cmd == "エレピ"):
+        elif (cmd == "ステージエレクトリックピアノ" or cmd == "エレクトリックピアノ"
+              or cmd == "ステージエレピ" or cmd == "エレピ"):
             inst_select = 3
-            if random.randint(0, 100) < 50: # Play English or Japanese voice by 50%
+            # Play English or Japanese voice by 50%
+            if random.randint(0, 100) < 50:
                 inst_jp_3.play()
             else:
                 inst_en_3.play()
             print("Stage Electric Piano")
         elif (cmd == "エレクトリックベース" or cmd == "エレベ" or cmd == "ベース"):
             inst_select = 4
-            if random.randint(0, 100) < 50: # Play English or Japanese voice by 50%
+            # Play English or Japanese voice by 50%
+            if random.randint(0, 100) < 50:
                 inst_jp_4.play()
             else:
                 inst_en_4.play()
-            print("Electric Base")            
+            print("Electric Base")
         else:
             print("Unknown command: ", cmd)
         return True
@@ -646,10 +658,10 @@ def main():
     GPIO.setup(KEY27, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(KEY18, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(KEY17, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-    GPIO.setup(KEY3,  GPIO.IN, pull_up_down=GPIO.PUD_UP) # Physical pull up
-    GPIO.setup(KEY2,  GPIO.IN, pull_up_down=GPIO.PUD_UP) # Physical pull up
+    GPIO.setup(KEY3,  GPIO.IN, pull_up_down=GPIO.PUD_UP)  # Physical pull up
+    GPIO.setup(KEY2,  GPIO.IN, pull_up_down=GPIO.PUD_UP)  # Physical pull up
 
-    #GPIO.setup(KEY4,  GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    # GPIO.setup(KEY4,  GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(KEY14, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(KEY15, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
@@ -675,12 +687,14 @@ def main():
     GPIO.add_event_detect(KEY27, GPIO.RISING, callback=play27,  bouncetime=300)
     GPIO.add_event_detect(KEY18, GPIO.RISING, callback=play18,  bouncetime=300)
     GPIO.add_event_detect(KEY17, GPIO.RISING, callback=play17,  bouncetime=300)
-    GPIO.add_event_detect(KEY3,  GPIO.FALLING, callback=play3,  bouncetime=300) # Physical pull up
-    GPIO.add_event_detect(KEY2,  GPIO.FALLING, callback=play2,  bouncetime=300) # Physical pull up
+    # Physical pull up
+    GPIO.add_event_detect(KEY3,  GPIO.FALLING, callback=play3,  bouncetime=300)
+    # Physical pull up
+    GPIO.add_event_detect(KEY2,  GPIO.FALLING, callback=play2,  bouncetime=300)
 
-    #GPIO.add_event_detect(KEY4,  GPIO.RISING, callback=play4,   bouncetime=300)
-    GPIO.add_event_detect(KEY14, GPIO.RISING, callback=play14,  bouncetime=1000)
-    GPIO.add_event_detect(KEY15, GPIO.RISING, callback=play15,  bouncetime=1000)
+    # GPIO.add_event_detect(KEY4,  GPIO.RISING, callback=play4, bouncetime=300)
+    GPIO.add_event_detect(KEY14, GPIO.RISING, callback=play14, bouncetime=1000)
+    GPIO.add_event_detect(KEY15, GPIO.RISING, callback=play15, bouncetime=1000)
 
     print("Starting main loop. Press ctrl+c to quit.")
 
@@ -698,6 +712,7 @@ def main():
     print("Deleted process priority object.")
     GPIO.cleanup()
     print("GPIO cleanup.")
+
 
 if __name__ == "__main__":
     main()
