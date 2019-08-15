@@ -51,7 +51,6 @@ KEY15  = 15
 # KEY4  = 4
 
 def main():
-
     # Process priority setting
     process_priority = psutil.Process()
     print('PID: %s, Priority: %s' % (process_priority.pid, process_priority.nice()))
@@ -187,7 +186,7 @@ def main():
     jazor3  = pygame.mixer.Sound("sound/jazor3.wav")
     jazor2  = pygame.mixer.Sound("sound/jazor2.wav")
 
-    # Instrumental
+    # Instrumental select voice play
     inst_en_0 = pygame.mixer.Sound("sound/inst_en_grandpiano.wav")
     inst_en_1 = pygame.mixer.Sound("sound/inst_en_harp.wav")
     inst_en_2 = pygame.mixer.Sound("sound/inst_en_jazzorgan.wav")
@@ -686,18 +685,17 @@ def main():
     print("Starting main loop. Press ctrl+c to quit.")
 
     # Connect Julius (voice recognition engine)
-    # client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client:
         julius_cli.julius_connect(client)
         julius_cli.julius_recv(voice_command_cb, client)
     print("Socket closed.")
 
     # Free objects
-    # client.close()
     pygame.mixer.quit()
     pygame.quit()
     print("pygame quit.")
     del process_priority
+    print("Deleted process priority object.")
     GPIO.cleanup()
     print("GPIO cleanup.")
 
