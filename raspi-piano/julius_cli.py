@@ -1,4 +1,3 @@
-import socket
 import xml.etree.ElementTree as ET
 
 JULIUS_PORT = 10500

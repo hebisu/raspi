@@ -1,10 +1,8 @@
 import random
 import socket
-from time import sleep
 
 import psutil
 import pygame
-from pygame.locals import *
 import RPi.GPIO as GPIO
 
 import julius_cli
