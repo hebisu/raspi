@@ -12,28 +12,36 @@ def julius_connect(client):
 
 # Receive data from Julius
 def julius_recv(callback, client):
-    tmp = bytes()
+    buf_tmp = bytes()
     while True:
         try:
             # Receive XML format
-            buf = client.recv(MAX_RECV_SIZE)
-            tmp += buf
+            buf_recv = client.recv(MAX_RECV_SIZE)
+            buf_tmp += buf_recv
+
             # \n.\n is Julius section devider
-            n = tmp.find(b"\n.\n")
-            if n < 0: continue
-            line = tmp[:n].decode("utf-8")
-            tmp = tmp[n+3:]
+            num_letters = buf_tmp.find(b"\n.\n")
+            if num_letters < 0:
+                continue
+
+            line = buf_tmp[:num_letters].decode("utf-8")
+            buf_tmp = buf_tmp[num_letters + 3:]
+            
             # Received XML
             # Process devided data as XML
             root = ET.fromstring(line)
-            if root.tag != "RECOGOUT": continue
-            shypo = root[0]
+            if root.tag != "RECOGOUT":
+                continue
+
+            sentence_hypo = root[0]
             # Fetch recognized word
             words = []
-            for whypo in shypo:
-                words.append(whypo.attrib['WORD'])
+            for word_hypo in sentence_hypo:
+                words.append(word_hypo.attrib['WORD'])
+
             # Cut first of [s] and end of [/s]
-            words = words[1:len(words)-1]
+            words = words[1:len(words) - 1]
+
             if callback(words) == False:
                 break
         except KeyboardInterrupt:
