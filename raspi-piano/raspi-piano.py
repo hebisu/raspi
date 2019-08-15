@@ -1,4 +1,5 @@
 import random
+import socket
 from time import sleep
 
 import psutil
@@ -575,6 +576,7 @@ def main():
         else:
             print("Error invalid instrument number")
 
+    # Callback function for Julius voice control
     def voice_command_cb(words):
         global inst_select
         # Select and call selected instrument
@@ -684,10 +686,12 @@ def main():
     print("Starting main loop. Press ctrl+c to quit.")
 
     # Connect Julius (voice recognition engine)
-    julius_cli.julius_connect()
-    julius_cli.julius_recv(voice_command_cb)
+    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    julius_cli.julius_connect(client)
+    julius_cli.julius_recv(voice_command_cb, client)
 
     # Free objects
+    client.close()
     pygame.mixer.quit()
     pygame.quit()
     print("pygame quit.")

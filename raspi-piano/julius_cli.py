@@ -2,22 +2,21 @@ import socket
 import xml.etree.ElementTree as ET
 
 JULIUS_PORT = 10500
-MAX_RECV = 1024
+MAX_RECV_SIZE = 1024
 
 # Connect Julius
-client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-def julius_connect():
+def julius_connect(client):
     HOST = "localhost"
     PORT = JULIUS_PORT
     client.connect((HOST, PORT))
 
 # Receive data from Julius
-def julius_recv(callback):
+def julius_recv(callback, client):
     tmp = bytes()
     while True:
         try:
             # Receive XML format
-            buf = client.recv(MAX_RECV)
+            buf = client.recv(MAX_RECV_SIZE)
             tmp += buf
             # \n.\n is Julius section devider
             n = tmp.find(b"\n.\n")
@@ -39,7 +38,6 @@ def julius_recv(callback):
                 break
         except KeyboardInterrupt:
             break
-    client.close()
     return
 
 # Test callback func
