@@ -686,12 +686,14 @@ def main():
     print("Starting main loop. Press ctrl+c to quit.")
 
     # Connect Julius (voice recognition engine)
-    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    julius_cli.julius_connect(client)
-    julius_cli.julius_recv(voice_command_cb, client)
+    # client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client:
+        julius_cli.julius_connect(client)
+        julius_cli.julius_recv(voice_command_cb, client)
+    print("Socket closed.")
 
     # Free objects
-    client.close()
+    # client.close()
     pygame.mixer.quit()
     pygame.quit()
     print("pygame quit.")
