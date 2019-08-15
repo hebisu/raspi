@@ -4,11 +4,13 @@ import xml.etree.ElementTree as ET
 JULIUS_PORT = 10500
 MAX_RECV_SIZE = 1024
 
+
 # Connect Julius
 def julius_connect(client):
     HOST = "localhost"
     PORT = JULIUS_PORT
     client.connect((HOST, PORT))
+
 
 # Receive data from Julius
 def julius_recv(callback, client):
@@ -43,22 +45,21 @@ def julius_recv(callback, client):
             # Cut first letter [s] and end letter [/s]
             words = words[1:len(words) - 1]
 
-            if callback(words) == False:
+            if callback(words) is False:
                 break
         except KeyboardInterrupt:
             print("Keyboard Interrupt. Closing process.")
             break
     return
 
+
 # Test callback func
 def test_callback(words):
     print("Word: ", words)
     return True
 
+
 # main func
 if __name__ == "__main__":
     julius_connect()
     julius_recv(test_callback)
-
-
-
