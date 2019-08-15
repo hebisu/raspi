@@ -20,14 +20,15 @@ def julius_recv(callback, client):
             buf_tmp += buf_recv
 
             # \n.\n is Julius section devider
+            # Check the number of letters before \n.\n
             num_letters = buf_tmp.find(b"\n.\n")
             if num_letters < 0:
                 continue
 
+            # Fetch a word and progress pointer after \n.\n
             line = buf_tmp[:num_letters].decode("utf-8")
             buf_tmp = buf_tmp[num_letters + 3:]
-            
-            # Received XML
+
             # Process devided data as XML
             root = ET.fromstring(line)
             if root.tag != "RECOGOUT":
@@ -39,12 +40,13 @@ def julius_recv(callback, client):
             for word_hypo in sentence_hypo:
                 words.append(word_hypo.attrib['WORD'])
 
-            # Cut first of [s] and end of [/s]
+            # Cut first letter [s] and end letter [/s]
             words = words[1:len(words) - 1]
 
             if callback(words) == False:
                 break
         except KeyboardInterrupt:
+            print("Keyboard Interrupt. Closing process.")
             break
     return
 
