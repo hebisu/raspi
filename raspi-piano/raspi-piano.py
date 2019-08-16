@@ -1,3 +1,9 @@
+"""
+raspi-piano.py
+Electric piano application with Raspberry pi 3B
+Watch introduction video -> https://vimeo.com/352014490
+Written by Hiro Ebisu
+"""
 import random
 import socket
 
@@ -50,16 +56,21 @@ KEY15 = 15
 
 
 def main():
+    """
+    Main function
+    Setup audio and gpio settings
+    Run Julius
+    """
     # Process priority setting
     process_priority = psutil.Process()
     print('PID: %s, Priority: %s' % (process_priority.pid,
-          process_priority.nice()))
+                                     process_priority.nice()))
 
     # Highest priority
     process_priority.nice(-20)
 
     print('PID: %s, Priority: %s' % (process_priority.pid,
-          process_priority.nice()))
+                                     process_priority.nice()))
 
     # Sound settings
     pygame.init()
@@ -206,6 +217,9 @@ def main():
 
     # Callback functions
     def play21(key):
+        """
+        Play wave file No.21 (GPIO BCM number)
+        """
         if inst_select == INST_PIANO:
             piano21.play()
         elif inst_select == INST_HARP:
@@ -218,8 +232,12 @@ def main():
             eleba21.play()
         else:
             print("Error invalid instrument number")
+        return key
 
     def play26(key):
+        """
+        Play wave file No.26 (GPIO BCM number)
+        """
         if inst_select == INST_PIANO:
             piano26.play()
         elif inst_select == INST_HARP:
@@ -232,8 +250,12 @@ def main():
             eleba26.play()
         else:
             print("Error invalid instrument number")
+        return key
 
     def play20(key):
+        """
+        Play wave file No.20 (GPIO BCM number)
+        """
         if inst_select == INST_PIANO:
             piano20.play()
         elif inst_select == INST_HARP:
@@ -246,8 +268,12 @@ def main():
             eleba20.play()
         else:
             print("Error invalid instrument number")
+        return key
 
     def play19(key):
+        """
+        Play wave file No.19 (GPIO BCM number)
+        """
         if inst_select == INST_PIANO:
             piano19.play()
         elif inst_select == INST_HARP:
@@ -260,8 +286,12 @@ def main():
             eleba19.play()
         else:
             print("Error invalid instrument number")
+        return key
 
     def play16(key):
+        """
+        Play wave file No.16 (GPIO BCM number)
+        """
         if inst_select == INST_PIANO:
             piano16.play()
         elif inst_select == INST_HARP:
@@ -274,8 +304,12 @@ def main():
             eleba16.play()
         else:
             print("Error invalid instrument number")
+        return key
 
     def play13(key):
+        """
+        Play wave file No.13 (GPIO BCM number)
+        """
         if inst_select == INST_PIANO:
             piano13.play()
         elif inst_select == INST_HARP:
@@ -288,8 +322,12 @@ def main():
             eleba13.play()
         else:
             print("Error invalid instrument number")
+        return key
 
     def play12(key):
+        """
+        Play wave file No.12 (GPIO BCM number)
+        """
         if inst_select == INST_PIANO:
             piano12.play()
         elif inst_select == INST_HARP:
@@ -302,8 +340,12 @@ def main():
             eleba12.play()
         else:
             print("Error invalid instrument number")
+        return key
 
     def play6(key):
+        """
+        Play wave file No.6 (GPIO BCM number)
+        """
         if inst_select == INST_PIANO:
             piano6.play()
         elif inst_select == INST_HARP:
@@ -316,8 +358,12 @@ def main():
             eleba6.play()
         else:
             print("Error invalid instrument number")
+        return key
 
     def play5(key):
+        """
+        Play wave file No.5 (GPIO BCM number)
+        """
         if inst_select == INST_PIANO:
             piano5.play()
         elif inst_select == INST_HARP:
@@ -330,8 +376,12 @@ def main():
             eleba5.play()
         else:
             print("Error invalid instrument number")
+        return key
 
     def play7(key):
+        """
+        Play wave file No.7 (GPIO BCM number)
+        """
         if inst_select == INST_PIANO:
             piano7.play()
         elif inst_select == INST_HARP:
@@ -344,8 +394,12 @@ def main():
             eleba7.play()
         else:
             print("Error invalid instrument number")
+        return key
 
     def play11(key):
+        """
+        Play wave file No.11 (GPIO BCM number)
+        """
         if inst_select == INST_PIANO:
             piano11.play()
         elif inst_select == INST_HARP:
@@ -358,8 +412,12 @@ def main():
             eleba11.play()
         else:
             print("Error invalid instrument number")
+        return key
 
     def play8(key):
+        """
+        Play wave file No.8 (GPIO BCM number)
+        """
         if inst_select == INST_PIANO:
             piano8.play()
         elif inst_select == INST_HARP:
@@ -372,8 +430,12 @@ def main():
             eleba8.play()
         else:
             print("Error invalid instrument number")
+        return key
 
     def play9(key):
+        """
+        Play wave file No.9 (GPIO BCM number)
+        """
         if inst_select == INST_PIANO:
             piano9.play()
         elif inst_select == INST_HARP:
@@ -386,8 +448,12 @@ def main():
             eleba9.play()
         else:
             print("Error invalid instrument number")
+        return key
 
     def play25(key):
+        """
+        Play wave file No.25 (GPIO BCM number)
+        """
         if inst_select == INST_PIANO:
             piano25.play()
         elif inst_select == INST_HARP:
@@ -400,8 +466,12 @@ def main():
             eleba25.play()
         else:
             print("Error invalid instrument number")
+        return key
 
     def play10(key):
+        """
+        Play wave file No.10 (GPIO BCM number)
+        """
         if inst_select == INST_PIANO:
             piano10.play()
         elif inst_select == INST_HARP:
@@ -414,8 +484,12 @@ def main():
             eleba10.play()
         else:
             print("Error invalid instrument number")
+        return key
 
     def play24(key):
+        """
+        Play wave file No.24 (GPIO BCM number)
+        """
         if inst_select == INST_PIANO:
             piano24.play()
         elif inst_select == INST_HARP:
@@ -428,8 +502,12 @@ def main():
             eleba24.play()
         else:
             print("Error invalid instrument number")
+        return key
 
     def play22(key):
+        """
+        Play wave file No.22 (GPIO BCM number)
+        """
         if inst_select == INST_PIANO:
             piano22.play()
         elif inst_select == INST_HARP:
@@ -442,8 +520,12 @@ def main():
             eleba22.play()
         else:
             print("Error invalid instrument number")
+        return key
 
     def play23(key):
+        """
+        Play wave file No.23 (GPIO BCM number)
+        """
         if inst_select == INST_PIANO:
             piano23.play()
         elif inst_select == INST_HARP:
@@ -456,8 +538,12 @@ def main():
             eleba23.play()
         else:
             print("Error invalid instrument number")
+        return key
 
     def play27(key):
+        """
+        Play wave file No.27 (GPIO BCM number)
+        """
         if inst_select == INST_PIANO:
             piano27.play()
         elif inst_select == INST_HARP:
@@ -470,8 +556,12 @@ def main():
             eleba27.play()
         else:
             print("Error invalid instrument number")
+        return key
 
     def play18(key):
+        """
+        Play wave file No.18 (GPIO BCM number)
+        """
         if inst_select == INST_PIANO:
             piano18.play()
         elif inst_select == INST_HARP:
@@ -484,8 +574,12 @@ def main():
             eleba18.play()
         else:
             print("Error invalid instrument number")
+        return key
 
     def play17(key):
+        """
+        Play wave file No.17 (GPIO BCM number)
+        """
         if inst_select == INST_PIANO:
             piano17.play()
         elif inst_select == INST_HARP:
@@ -498,8 +592,12 @@ def main():
             eleba17.play()
         else:
             print("Error invalid instrument number")
+        return key
 
     def play3(key):
+        """
+        Play wave file No.3 (GPIO BCM number)
+        """
         if inst_select == INST_PIANO:
             piano3.play()
         elif inst_select == INST_HARP:
@@ -512,8 +610,12 @@ def main():
             eleba3.play()
         else:
             print("Error invalid instrument number")
+        return key
 
     def play2(key):
+        """
+        Play wave file No.2 (GPIO BCM number)
+        """
         if inst_select == INST_PIANO:
             piano2.play()
         elif inst_select == INST_HARP:
@@ -526,14 +628,17 @@ def main():
             eleba2.play()
         else:
             print("Error invalid instrument number")
+        return key
 
     def play14(key):
+        """
+        Change instrument (GPIO BCM number 14)
+        """
         global inst_select
         inst_select += 1
         if inst_select > INST_ELEBA:
             inst_select = INST_PIANO
         # print("Instrument No." + str(inst_select))
-
         # Call selected instrument
         if inst_select == INST_PIANO:
             inst_en_0.play()
@@ -552,14 +657,17 @@ def main():
             print("Electric Base")
         else:
             print("Error invalid instrument number")
+        return key
 
     def play15(key):
+        """
+        Change instrument (GPIO BCM number 15)
+        """
         global inst_select
         inst_select -= 1
         if inst_select < INST_PIANO:
             inst_select = INST_ELEBA
         # print("Instrument No." + str(inst_select))
-
         # Call selected instrument
         if inst_select == INST_PIANO:
             inst_jp_0.play()
@@ -578,13 +686,16 @@ def main():
             print("Electric Base")
         else:
             print("Error invalid instrument number")
+        return key
 
-    # Callback function for Julius voice control
     def voice_command_cb(words):
+        """
+        Callback function for Julius voice control
+        """
         global inst_select
         # Select and call selected instrument
         cmd = "".join(words)
-        if (cmd == "グランドピアノ" or cmd == "ピアノ"):
+        if cmd == "グランドピアノ" or cmd == "ピアノ":
             inst_select = 0
             # Play English or Japanese voice by 50%
             if random.randint(0, 100) < 50:
@@ -600,7 +711,7 @@ def main():
             else:
                 inst_en_1.play()
             print("Harp")
-        elif (cmd == "ジャズオルガン" or cmd == "オルガン"):
+        elif cmd == "ジャズオルガン" or cmd == "オルガン":
             inst_select = 2
             # Play English or Japanese voice by 50%
             if random.randint(0, 100) < 50:
@@ -617,7 +728,7 @@ def main():
             else:
                 inst_en_3.play()
             print("Stage Electric Piano")
-        elif (cmd == "エレクトリックベース" or cmd == "エレベ" or cmd == "ベース"):
+        elif cmd == "エレクトリックベース" or cmd == "エレベ" or cmd == "ベース":
             inst_select = 4
             # Play English or Japanese voice by 50%
             if random.randint(0, 100) < 50:
@@ -631,6 +742,7 @@ def main():
 
     # def play4(key):
     #     print("Key 4")
+    #     return key
 
     # GPIO settings (BCM mode)
     GPIO.setmode(GPIO.BCM)
@@ -642,12 +754,12 @@ def main():
     GPIO.setup(KEY16, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(KEY13, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(KEY12, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-    GPIO.setup(KEY6,  GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-    GPIO.setup(KEY5,  GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-    GPIO.setup(KEY7,  GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(KEY6, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(KEY5, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(KEY7, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(KEY11, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-    GPIO.setup(KEY8,  GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-    GPIO.setup(KEY9,  GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(KEY8, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(KEY9, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(KEY25, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(KEY10, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(KEY24, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
@@ -656,39 +768,39 @@ def main():
     GPIO.setup(KEY27, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(KEY18, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(KEY17, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-    GPIO.setup(KEY3,  GPIO.IN, pull_up_down=GPIO.PUD_UP)  # Physical pull up
-    GPIO.setup(KEY2,  GPIO.IN, pull_up_down=GPIO.PUD_UP)  # Physical pull up
+    GPIO.setup(KEY3, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # Physical pull up
+    GPIO.setup(KEY2, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # Physical pull up
 
     # GPIO.setup(KEY4,  GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(KEY14, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(KEY15, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
     # HW interrupt settings (bouncetime is to prevent contact bounce)
-    GPIO.add_event_detect(KEY21, GPIO.RISING, callback=play21,  bouncetime=300)
-    GPIO.add_event_detect(KEY26, GPIO.RISING, callback=play26,  bouncetime=300)
-    GPIO.add_event_detect(KEY20, GPIO.RISING, callback=play20,  bouncetime=300)
-    GPIO.add_event_detect(KEY19, GPIO.RISING, callback=play19,  bouncetime=300)
-    GPIO.add_event_detect(KEY16, GPIO.RISING, callback=play16,  bouncetime=300)
-    GPIO.add_event_detect(KEY13, GPIO.RISING, callback=play13,  bouncetime=300)
-    GPIO.add_event_detect(KEY12, GPIO.RISING, callback=play12,  bouncetime=300)
-    GPIO.add_event_detect(KEY6,  GPIO.RISING, callback=play6,   bouncetime=300)
-    GPIO.add_event_detect(KEY5,  GPIO.RISING, callback=play5,   bouncetime=300)
-    GPIO.add_event_detect(KEY7,  GPIO.RISING, callback=play7,   bouncetime=300)
-    GPIO.add_event_detect(KEY11, GPIO.RISING, callback=play11,  bouncetime=300)
-    GPIO.add_event_detect(KEY8,  GPIO.RISING, callback=play8,   bouncetime=300)
-    GPIO.add_event_detect(KEY9,  GPIO.RISING, callback=play9,   bouncetime=300)
-    GPIO.add_event_detect(KEY25, GPIO.RISING, callback=play25,  bouncetime=300)
-    GPIO.add_event_detect(KEY10, GPIO.RISING, callback=play10,  bouncetime=300)
-    GPIO.add_event_detect(KEY24, GPIO.RISING, callback=play24,  bouncetime=300)
-    GPIO.add_event_detect(KEY22, GPIO.RISING, callback=play22,  bouncetime=300)
-    GPIO.add_event_detect(KEY23, GPIO.RISING, callback=play23,  bouncetime=300)
-    GPIO.add_event_detect(KEY27, GPIO.RISING, callback=play27,  bouncetime=300)
-    GPIO.add_event_detect(KEY18, GPIO.RISING, callback=play18,  bouncetime=300)
-    GPIO.add_event_detect(KEY17, GPIO.RISING, callback=play17,  bouncetime=300)
+    GPIO.add_event_detect(KEY21, GPIO.RISING, callback=play21, bouncetime=300)
+    GPIO.add_event_detect(KEY26, GPIO.RISING, callback=play26, bouncetime=300)
+    GPIO.add_event_detect(KEY20, GPIO.RISING, callback=play20, bouncetime=300)
+    GPIO.add_event_detect(KEY19, GPIO.RISING, callback=play19, bouncetime=300)
+    GPIO.add_event_detect(KEY16, GPIO.RISING, callback=play16, bouncetime=300)
+    GPIO.add_event_detect(KEY13, GPIO.RISING, callback=play13, bouncetime=300)
+    GPIO.add_event_detect(KEY12, GPIO.RISING, callback=play12, bouncetime=300)
+    GPIO.add_event_detect(KEY6, GPIO.RISING, callback=play6, bouncetime=300)
+    GPIO.add_event_detect(KEY5, GPIO.RISING, callback=play5, bouncetime=300)
+    GPIO.add_event_detect(KEY7, GPIO.RISING, callback=play7, bouncetime=300)
+    GPIO.add_event_detect(KEY11, GPIO.RISING, callback=play11, bouncetime=300)
+    GPIO.add_event_detect(KEY8, GPIO.RISING, callback=play8, bouncetime=300)
+    GPIO.add_event_detect(KEY9, GPIO.RISING, callback=play9, bouncetime=300)
+    GPIO.add_event_detect(KEY25, GPIO.RISING, callback=play25, bouncetime=300)
+    GPIO.add_event_detect(KEY10, GPIO.RISING, callback=play10, bouncetime=300)
+    GPIO.add_event_detect(KEY24, GPIO.RISING, callback=play24, bouncetime=300)
+    GPIO.add_event_detect(KEY22, GPIO.RISING, callback=play22, bouncetime=300)
+    GPIO.add_event_detect(KEY23, GPIO.RISING, callback=play23, bouncetime=300)
+    GPIO.add_event_detect(KEY27, GPIO.RISING, callback=play27, bouncetime=300)
+    GPIO.add_event_detect(KEY18, GPIO.RISING, callback=play18, bouncetime=300)
+    GPIO.add_event_detect(KEY17, GPIO.RISING, callback=play17, bouncetime=300)
     # Physical pull up
-    GPIO.add_event_detect(KEY3,  GPIO.FALLING, callback=play3,  bouncetime=300)
+    GPIO.add_event_detect(KEY3, GPIO.FALLING, callback=play3, bouncetime=300)
     # Physical pull up
-    GPIO.add_event_detect(KEY2,  GPIO.FALLING, callback=play2,  bouncetime=300)
+    GPIO.add_event_detect(KEY2, GPIO.FALLING, callback=play2, bouncetime=300)
 
     # GPIO.add_event_detect(KEY4,  GPIO.RISING, callback=play4, bouncetime=300)
     GPIO.add_event_detect(KEY14, GPIO.RISING, callback=play14, bouncetime=1000)
