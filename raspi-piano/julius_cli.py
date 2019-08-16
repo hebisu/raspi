@@ -1,23 +1,33 @@
+"""
+julius_cli.py
+Written by Hiro Ebisu
+"""
+
+import socket
+
 import xml.etree.ElementTree as ET
 
 JULIUS_PORT = 10500
 MAX_RECV_SIZE = 1024
 
+def julius_connect(client_socket):
+    """
+    julius_connect is to connect Julius with IP socket
+    """
+    julius_host = "localhost"
+    julius_port = JULIUS_PORT
+    client_socket.connect((julius_host, julius_port))
 
-# Connect Julius
-def julius_connect(client):
-    HOST = "localhost"
-    PORT = JULIUS_PORT
-    client.connect((HOST, PORT))
-
-
-# Receive data from Julius
-def julius_recv(callback, client):
+def julius_recv(callback, client_socket):
+    """
+    julius_recv is to receive data from Julius,
+    recognize words and return the string
+    """
     buf_tmp = bytes()
     while True:
         try:
             # Receive XML format
-            buf_recv = client.recv(MAX_RECV_SIZE)
+            buf_recv = client_socket.recv(MAX_RECV_SIZE)
             buf_tmp += buf_recv
 
             # \n.\n is Julius section devider
@@ -54,11 +64,16 @@ def julius_recv(callback, client):
 
 # Test callback func
 def test_callback(words):
+    """
+    test_callback is test callback function for Julius
+    """
     print("Word: ", words)
     return True
 
 
 # main func
 if __name__ == "__main__":
-    julius_connect()
-    julius_recv(test_callback)
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client:
+        julius_connect(client)
+        julius_recv(test_callback, client)
+    print("Socket closed.")
