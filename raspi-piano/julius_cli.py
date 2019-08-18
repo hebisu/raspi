@@ -55,11 +55,12 @@ def julius_recv(callback, client_socket):
             words = words[1:len(words) - 1]
 
             if callback(words) is False:
-                break
+                return False
+
         except KeyboardInterrupt:
             print("Keyboard Interrupt. Closing process.")
-            break
-    return
+            return True
+    return True
 
 
 # Test callback func
