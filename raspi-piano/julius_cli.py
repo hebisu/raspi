@@ -63,10 +63,10 @@ def julius_recv(callback, client_socket):
     return True
 
 
-# Test callback func
-def test_callback(words):
+# Sample callback func
+def sample_callback(words):
     """
-    test_callback is test callback function for Julius
+    sample_callback is test callback function for Julius
     """
     print("Word: ", words)
     return True
@@ -76,5 +76,5 @@ def test_callback(words):
 if __name__ == "__main__":
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client:
         julius_connect(client)
-        julius_recv(test_callback, client)
+        julius_recv(sample_callback, client)
     print("Socket closed.")
